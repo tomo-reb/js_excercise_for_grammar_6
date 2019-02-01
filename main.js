@@ -17,7 +17,7 @@
 // 関数スコープ内でvar,let,constのいずれかで宣言すると関数の外部からはアクセスできず
 // 内側からのみアクセス可能なローカル変数になる
 // 関数の仮引数も関数スコープを持つ
-
+// 関数の処理内容を記述する「{}」で囲まれた部分の変数は外部からアクセスできないgit
 
 // 課題3: 以下の条件を満たす高階関数を実装してください
 //   - 関数名: kadai_3
@@ -35,30 +35,28 @@
 //           - 第1引数で受けとった `message` の内容を `alert` を使ってアラートダイアログに表示する
 //   - kadai_3関数を実装した直後に「kadai_3(数値, コールバック関数)」を呼び出して、アラートダイアログのメッセージ内容が意図通りであることを確認する
 
-function kadai_3(age,callback) {
-    let message;
-    if(typeof age !== 'number') {
-        message =  "「'数値が入力されていません'」"
-    }else if(age >= 20){
-        message =  "「'値は20以上です'」"
-    }else if(age > 10 && age < 20){
-        message =  "「'値は10以上20未満です'」"
-    }else{
-        message =  "'値は10未満です'」"
-    }
-    callback(message);
-    
-};
-
-const callback = (message) => {
-    alert(message);
+function kadai_3(age, callback) {
+  let message;
+  if (typeof age !== 'number') {
+    message = "「'数値が入力されていません'」";
+  } else if (age >= 20) {
+    message = "「'値は20以上です'」";
+  } else if (age >= 10) {
+    message = "「'値は10以上20未満です'」";
+  } else {
+    message = "'値は10未満です'」";
+  }
+  callback(message);
 }
 
-kadai_3(20,callback);
-kadai_3(15,callback);
-kadai_3(9,callback);
-kadai_3('string',callback);
+const callback = message => {
+  alert(message);
+};
 
+kadai_3(20, callback);
+kadai_3(15, callback);
+kadai_3(9, callback);
+kadai_3('string', callback);
 
 // 課題4: 以下の条件を満たす即時関数を作る
 //   - 2つの引数を受け取る
@@ -67,6 +65,6 @@ kadai_3('string',callback);
 //   - 処理内容:
 //     - 第1引数のx, 第2引数のyを使って足し算した結果(「x + y」の結果)をconsole.logで出力する。
 
-(function(x,y){
-    console.log(x + y);
-}(20,30));
+(function(x, y) {
+  console.log(x + y);
+})(20, 30);
